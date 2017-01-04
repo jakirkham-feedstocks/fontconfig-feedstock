@@ -14,7 +14,7 @@ source:
     - fcf.patch       # [linux]
 
 build:
-  number: 2
+  number: 3
   skip: true                      # [win]
   binary_has_prefix_files:        # [linux]
     - lib/libfontconfig.so.1.9.2  # [linux]
@@ -26,13 +26,13 @@ requirements:
     - freetype 2.7|2.7.*
     - libiconv
     - libpng >=1.6.23,<1.7
-    - libxml2
+    - libxml2 2.9.*
 
   run:
     - freetype 2.7|2.7.*
     - libiconv
     - libpng >=1.6.23,<1.7
-    - libxml2
+    - libxml2 2.9.*
 
 test:
   commands:
