@@ -14,8 +14,8 @@ source:
     - fcf.patch       # [linux]
 
 build:
-  number: 3
-  skip: true                      # [win]
+  number: 4
+  skip: True                      # [win]
   binary_has_prefix_files:        # [linux]
     - lib/libfontconfig.so.1.9.2  # [linux]
 
@@ -25,14 +25,16 @@ requirements:
     - libtool
     - freetype 2.7|2.7.*
     - libiconv
-    - libpng >=1.6.23,<1.7
+    - libpng >=1.6.28,<1.7
     - libxml2 2.9.*
+    - icu 58.*  # [not win]
 
   run:
     - freetype 2.7|2.7.*
     - libiconv
-    - libpng >=1.6.23,<1.7
+    - libpng >=1.6.28,<1.7
     - libxml2 2.9.*
+    - icu 58.*  # [not win]
 
 test:
   commands:
@@ -50,6 +52,8 @@ test:
     - test -f "${PREFIX}/lib/libfontconfig.a"
     - test -f "${PREFIX}/lib/libfontconfig.dylib"  # [osx]
     - test -f "${PREFIX}/lib/libfontconfig.so"     # [linux]
+    - conda inspect linkages -p $PREFIX fontconfig  # [not win]
+    - conda inspect objects -p $PREFIX fontconfig  # [osx]
 
 about:
   home: http://www.freedesktop.org/wiki/Software/fontconfig/
