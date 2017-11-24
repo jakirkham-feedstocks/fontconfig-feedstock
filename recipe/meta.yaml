@@ -21,6 +21,7 @@ build:
 requirements:
   build:
     - pkg-config
+    - gperf
     - libtool
     - freetype 2.8.1
     - libiconv 1.15
