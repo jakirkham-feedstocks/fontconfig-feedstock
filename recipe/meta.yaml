@@ -1,4 +1,4 @@
-{% set version = "2.12.1" %}
+{% set version = "2.12.6" %}
 
 package:
   name: fontconfig
@@ -6,14 +6,14 @@ package:
 
 source:
   url: http://www.freedesktop.org/software/fontconfig/release/fontconfig-{{ version }}.tar.bz2
-  sha256: b449a3e10c47e1d1c7a6ec6e2016cca73d3bd68fbbd4f0ae5cc6b573f7d6c7f3
+  sha256: cf0c30807d08f6a28ab46c61b8dbd55c97d2f292cf88f3a07d3384687f31f017
   patches:
     # This patch won't be submitted upstream. It's use here is to ensure the prefix used
     # to refer to the `fonts.conf` file.
     - fcf.patch       # [linux]
 
 build:
-  number: 6
+  number: 0
   skip: True                      # [win]
   binary_has_prefix_files:        # [linux]
     - lib/libfontconfig.so.1.9.2  # [linux]
@@ -21,17 +21,18 @@ build:
 requirements:
   build:
     - pkg-config
+    - gperf
     - libtool
-    - freetype 2.7
+    - freetype 2.8.1
     - libiconv 1.15
-    - libpng >=1.6.22,<1.6.31
+    - libpng >=1.6.32,<1.6.35
     - libxml2 2.9.*
     - icu 58.*  # [not win]
 
   run:
-    - freetype 2.7
+    - freetype 2.8.1
     - libiconv 1.15
-    - libpng >=1.6.22,<1.6.31
+    - libpng >=1.6.32,<1.6.35
     - libxml2 2.9.*
     - icu 58.*  # [not win]
 

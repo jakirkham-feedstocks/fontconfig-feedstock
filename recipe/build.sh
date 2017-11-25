@@ -1,10 +1,10 @@
 #!/bin/bash
 
 
-if [[ `uname` == 'Darwin' ]];
+if [[ $(uname) == 'Darwin' ]];
 then
     export LIBRARY_SEARCH_VAR=DYLD_FALLBACK_LIBRARY_PATH
-elif [[ `uname` == 'Linux' ]];
+elif [[ $(uname) == 'Linux' ]];
 then
     export LIBRARY_SEARCH_VAR=LD_LIBRARY_PATH
 fi
@@ -16,9 +16,10 @@ chmod +x configure
 ./configure --prefix "${PREFIX}" \
 	    --enable-libxml2 \
 	    --enable-static \
-	    --disable-docs
+	    --disable-docs \
+      --with-add-fonts=${PREFIX}/fonts
 
-make
+make -j${CPU_COUNT}
 eval ${LIBRARY_SEARCH_VAR}="${PREFIX}/lib" make check
 eval ${LIBRARY_SEARCH_VAR}="${PREFIX}/lib" make install
 
