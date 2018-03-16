@@ -60,6 +60,7 @@ test:
 about:
   home: http://www.freedesktop.org/wiki/Software/fontconfig/
   license: MIT
+  license_file: COPYING
   summary: 'A library for configuring and customizing font access.'
 
 extra:
