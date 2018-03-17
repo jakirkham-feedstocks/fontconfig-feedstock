@@ -28,7 +28,7 @@ requirements:
     - libpng >=1.6.32,<1.6.35
     - libxml2 2.9.*
     - icu 58.*  # [not win]
-    - util-linux  # [linux]
+    - libuuid  # [not win]
 
   run:
     - freetype 2.8.1
@@ -36,7 +36,7 @@ requirements:
     - libpng >=1.6.32,<1.6.35
     - libxml2 2.9.*
     - icu 58.*  # [not win]
-    - util-linux  # [linux]
+    - libuuid  # [not win]
 
 test:
   commands:
