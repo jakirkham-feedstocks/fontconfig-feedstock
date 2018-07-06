@@ -26,19 +26,19 @@ requirements:
     - libtool
 
   host:
-    - freetype 2.8.1
-    - libiconv 1.15
-    - libpng >=1.6.32,<1.6.35
-    - libxml2 2.9.*
-    - icu 58.*  # [not win]
+    - freetype
+    - libiconv
+    - libpng
+    - libxml2
+    - icu      # [not win]
     - libuuid  # [linux]
 
   run:
-    - freetype 2.8.1
-    - libiconv 1.15
-    - libpng >=1.6.32,<1.6.35
-    - libxml2 2.9.*
-    - icu 58.*  # [not win]
+    - freetype
+    - libiconv
+    - libpng
+    - libxml2
+    - icu      # [not win]
     - libuuid  # [linux]
 
 test:
