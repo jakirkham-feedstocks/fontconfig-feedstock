@@ -19,7 +19,7 @@ build:
     - lib/libfontconfig.so.1.11.1  # [linux]
 
 requirements:
-  build:
+  host:
     - pkg-config
     - gperf
     - libtool
