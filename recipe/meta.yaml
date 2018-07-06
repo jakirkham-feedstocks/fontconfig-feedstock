@@ -13,7 +13,7 @@ source:
     - fcf.patch       # [linux]
 
 build:
-  number: 0
+  number: 1
   skip: True                       # [win]
   binary_has_prefix_files:         # [linux]
     - lib/libfontconfig.so.1.11.1  # [linux]
@@ -28,7 +28,7 @@ requirements:
     - libpng >=1.6.32,<1.6.35
     - libxml2 2.9.*
     - icu 58.*  # [not win]
-    - libuuid  # [not win]
+    - libuuid  # [linux]
 
   run:
     - freetype 2.8.1
@@ -36,7 +36,7 @@ requirements:
     - libpng >=1.6.32,<1.6.35
     - libxml2 2.9.*
     - icu 58.*  # [not win]
-    - libuuid  # [not win]
+    - libuuid  # [linux]
 
 test:
   commands:
