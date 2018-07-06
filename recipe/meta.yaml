@@ -57,8 +57,6 @@ test:
     - test -f "${PREFIX}/lib/libfontconfig.a"
     - test -f "${PREFIX}/lib/libfontconfig.dylib"  # [osx]
     - test -f "${PREFIX}/lib/libfontconfig.so"     # [linux]
-    - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
-    - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
 
 about:
   home: http://www.freedesktop.org/wiki/Software/fontconfig/
