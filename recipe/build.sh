@@ -1,13 +1,6 @@
 #!/bin/bash
 
 
-if [[ $(uname) == 'Darwin' ]];
-then
-    # Use system UUID on macOS.
-    export UUID_CFLAGS=" "
-    export UUID_LIBS=" "
-fi
-
 sed -i.orig s:'@PREFIX@':"${PREFIX}":g src/fccfg.c
 
 autoreconf -f -i
