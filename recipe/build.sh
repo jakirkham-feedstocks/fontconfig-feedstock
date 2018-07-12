@@ -11,7 +11,6 @@ then
     #############################################################
     export UUID_CFLAGS=" "
     export UUID_LIBS=" "
-    export PKGCONFIG_REQUIRES_PRIVATELY="${PKGCONFIG_REQUIRES_PRIVATELY} uuid"
 fi
 
 sed -i.orig s:'@PREFIX@':"${PREFIX}":g src/fccfg.c
@@ -34,3 +33,14 @@ rm -Rf "${PREFIX}/var/cache/fontconfig"
 # Leave cache directory, in case it's needed
 mkdir -p "${PREFIX}/var/cache/fontconfig"
 touch "${PREFIX}/var/cache/fontconfig/.leave"
+
+if [[ $(uname) == 'Darwin' ]];
+then
+    #############################################################
+    # Workaround for `libuuid` bug in 2.13.0.                   #
+    # Drop on subsequent `fontconfig` release.                  #
+    #                                                           #
+    # ref: https://bugs.freedesktop.org/show_bug.cgi?id=105366  #
+    #############################################################
+    sed -i '' "s/uuid//g" "${PREFIX}/lib/pkgconfig/fontconfig.pc"
+fi
