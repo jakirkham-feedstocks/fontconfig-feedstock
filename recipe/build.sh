@@ -10,7 +10,7 @@ fi
 
 sed -i.orig s:'@PREFIX@':"${PREFIX}":g src/fccfg.c
 
-chmod +x configure
+autoreconf -f -i
 
 ./configure --prefix "${PREFIX}" \
 	    --enable-libxml2 \
