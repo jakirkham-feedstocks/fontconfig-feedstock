@@ -8,34 +8,42 @@ source:
   url: http://www.freedesktop.org/software/fontconfig/release/fontconfig-{{ version }}.tar.bz2
   sha256: 91dde8492155b7f34bb95079e79be92f1df353fcc682c19be90762fd3e12eeb9
   patches:
+    # Apply upstream patch to ensure macOS's UUID is used.
+    # ref: https://bugs.freedesktop.org/show_bug.cgi?id=105366
+    - bug_105366.patch
     # This patch won't be submitted upstream. It's use here is to ensure the prefix used
     # to refer to the `fonts.conf` file.
     - fcf.patch       # [linux]
 
 build:
-  number: 1
+  number: 2
   skip: True                       # [win]
   binary_has_prefix_files:         # [linux]
     - lib/libfontconfig.so.1.11.1  # [linux]
 
 requirements:
   build:
+    - {{ compiler("c") }}
     - pkg-config
     - gperf
+    - automake
+    - gettext
     - libtool
-    - freetype 2.8.1
-    - libiconv 1.15
-    - libpng >=1.6.32,<1.6.35
-    - libxml2 2.9.*
-    - icu 58.*  # [not win]
+
+  host:
+    - freetype
+    - libiconv
+    - libpng
+    - libxml2
+    - icu      # [not win]
     - libuuid  # [linux]
 
   run:
-    - freetype 2.8.1
-    - libiconv 1.15
-    - libpng >=1.6.32,<1.6.35
-    - libxml2 2.9.*
-    - icu 58.*  # [not win]
+    - freetype
+    - libiconv
+    - libpng
+    - libxml2
+    - icu      # [not win]
     - libuuid  # [linux]
 
 test:
@@ -52,10 +60,11 @@ test:
 
     # Test for libraries.
     - test -f "${PREFIX}/lib/libfontconfig.a"
-    - test -f "${PREFIX}/lib/libfontconfig.dylib"  # [osx]
-    - test -f "${PREFIX}/lib/libfontconfig.so"     # [linux]
-    - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
-    - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
+    - test -f "${PREFIX}/lib/libfontconfig.dylib"               # [osx]
+    - test -f "${PREFIX}/lib/libfontconfig.so"                  # [linux]
+
+    # Check macOS uses the system UUID.
+    - '! grep -q uuid "${PREFIX}/lib/pkgconfig/fontconfig.pc"'  # [osx]
 
 about:
   home: http://www.freedesktop.org/wiki/Software/fontconfig/
