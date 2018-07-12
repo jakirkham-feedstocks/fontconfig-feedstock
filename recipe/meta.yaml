@@ -60,11 +60,11 @@ test:
 
     # Test for libraries.
     - test -f "${PREFIX}/lib/libfontconfig.a"
-    - test -f "${PREFIX}/lib/libfontconfig.dylib"               # [osx]
-    - test -f "${PREFIX}/lib/libfontconfig.so"                  # [linux]
+    - test -f "${PREFIX}/lib/libfontconfig.dylib"                   # [osx]
+    - test -f "${PREFIX}/lib/libfontconfig.so"                      # [linux]
 
     # Check macOS uses the system UUID.
-    - '! grep -q uuid "${PREFIX}/lib/pkgconfig/fontconfig.pc"'  # [osx]
+    - '[ ! grep -q uuid "${PREFIX}/lib/pkgconfig/fontconfig.pc" ]'  # [osx]
 
 about:
   home: http://www.freedesktop.org/wiki/Software/fontconfig/
