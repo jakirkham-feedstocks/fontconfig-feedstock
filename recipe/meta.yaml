@@ -27,6 +27,7 @@ requirements:
     - pkg-config
     - gperf
     - automake
+    - gettext
     - libtool
 
   host:
