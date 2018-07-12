@@ -8,6 +8,9 @@ source:
   url: http://www.freedesktop.org/software/fontconfig/release/fontconfig-{{ version }}.tar.bz2
   sha256: 91dde8492155b7f34bb95079e79be92f1df353fcc682c19be90762fd3e12eeb9
   patches:
+    # Apply upstream patch to ensure macOS's UUID is used.
+    # ref: https://bugs.freedesktop.org/show_bug.cgi?id=105366
+    - bug_105366.patch
     # This patch won't be submitted upstream. It's use here is to ensure the prefix used
     # to refer to the `fonts.conf` file.
     - fcf.patch       # [linux]
@@ -23,6 +26,7 @@ requirements:
     - {{ compiler("c") }}
     - pkg-config
     - gperf
+    - automake
     - libtool
 
   host:
